@@ -11,17 +11,21 @@
     <link href="index.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <main>
-      <h1>Search for videos on Youtube</h1>
-      <form action='#' class="js-search-form">
-        <label for="query">
-        <input type="text" class="js-query">
-        <button type="submit">Search</button>
-        </label>
-      </form>
-
-      <h2>Results</h2>
-      <div class ="js-results">
+      <header role="banner">
+        <h1>Search for videos on Youtube</h1>
+      </header>
+      <form action='#' role="form" name="youtube-search" class="js-search-form">
+        <label for="query"></label>
+          <input type="text" name="search-query" class="js-query" placeholder="food, skateboarding, dogs etc...">
+          <button type="submit">Search</button>
+        </form>
+    <main role="main">
+        <h2>Results</h2>
+      <div class="search-results"></div>
+      <div class ="js-results" aria-live="assertive" hidden> 
+      </div>
+      <div>
+        <button type="submit"class ="page-token" aria-live='assertive' hidden>next page</button>
       </div>
     </main>
     <script src="index.js"></script>

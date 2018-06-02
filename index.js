@@ -2,6 +2,7 @@ const youtube_search_url = 'https://www.googleapis.com/youtube/v3/search';
 const youtubeApiKey = 'AIzaSyAWK0d4_yCyzK3PyHSHVHOP2eHiAwZa_qM';
 // const youtubePartValue = 'snippet';
 // const youtubeSearchResults = 10; 
+const outputElem = $('.js-output')
 
 
 function getDataFromApi(searchTerm, callback) {
@@ -9,10 +10,20 @@ function getDataFromApi(searchTerm, callback) {
     part: `snippet`,
     q: `${searchTerm} in:name`,
     key: 'AIzaSyAWK0d4_yCyzK3PyHSHVHOP2eHiAwZa_qM',
-    maxResults: `10`
+    maxResults: `5`,
+    pageToken: page
   }
   $.getJSON(youtube_search_url, queryData, callback)
 }
+
+// function nextPage(searchTerm, callback) {
+//   const queryData = {
+//     part: `snippet`,
+//     q: `${searchTerm} in:name`,
+//     key: 'AIzaSyAWK0d4_yCyzK3PyHSHVHOP2eHiAwZa_qM',
+//     pageToken: 
+//   }
+// }
 
 // function getDataFromApi(searchTerm, callback) {
 //   const queryData = {
@@ -40,14 +51,20 @@ function renderResult(result) {
     <a href="https://www.youtube.com/watch?v=${result.id.videoId}" target="_blank">${result.snippet.channelTitle}</a><br>
     <a href="https://www.youtube.com/channel/${result.snippet.channelId}" target="_blank">See more videos from this channel</a>
     <br><br>
-    
   </div>
   `
 }
 
 function displayYoutubeSearchData(data) {
-  const results = data.items.map((item, index) => renderResult(item));
-  $('.js-results').html(results);
+  const results = data.items.map((item, index) => renderResult(item))
+  const outputElem = $('.js-output');
+  const numberOfResults = `<p>Total Results: ${data.pageInfo.totalResults} <br>Currently Displaying: ${data.pageInfo.resultsPerPage}</p>`
+  $('.search-results').html(numberOfResults)
+  $('.js-results')
+    .prop('hidden', false)
+    .html(results);
+    console.log(data.nextPageToken)
+  $('.page-token').html(data.nextPageToken)
 }
 
 function watchSubmit () {

@@ -1,7 +1,38 @@
 *{
   box-sizing: border-box;
+  text-align: center;
+  background-color:  #93e1ea;
 }
 
+/* label {
+  display: block;
+  margin: auto;
+  color: green;
+  font-size: 14px;
+  width: 25%;
+  margin-bottom: 5px;
+  border-radius: 2.5px;
+  padding: 1px;
+} */
+
+h1 {
+  display: block;
+  font-size: 24px;
+}
+
+input {
+  border-radius: 2.5px;
+  border: solid black 2px;
+  height: 40px;
+  width: 40%;
+  margin: auto;
+}
+
+button {
+  border-radius: 2.5px;
+  border: solid black 2px;
+  height: 40px;
+}
 div {
   margin: auto;
   width: 50%;
